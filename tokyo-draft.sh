@@ -21,8 +21,10 @@ start() {
   if [ -f ".env.override" ]; then
     ENV=".env.override"
   fi
-  source $ENV
-  screen -S mail-service -d -m cargo run --production -- --pidfile $PIDFILE
+  set -a
+  . $ENV
+  set +a
+  screen -S tokyo-drafter -d -m cargo run -r -- --pidfile $PIDFILE
 
   return $?
 }
