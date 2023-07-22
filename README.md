@@ -1,13 +1,13 @@
-# Rust-template
+# tokyo-draft
 
 <p align="center">~  ~</p>
 <p align="center">
   <a href="#get-started-">Get started</a>
   ·
-  <a href="https://crates.io/crates/rust-template" target="_blank">Crates.io</a>
+  <a href="https://crates.io/crates/tokyo-draft" target="_blank">Crates.io</a>
 </p>
 <p align="center">Developed by <a href="https://veeso.dev/" target="_blank">@veeso</a></p>
-<p align="center">Current version: 0.1.0 (26/06/2023)</p>
+<p align="center">Current version: 0.1.0 (22/07/2023)</p>
 
 <p align="center">
   <a href="https://opensource.org/license/mit/"
@@ -15,19 +15,19 @@
       src="https://img.shields.io/badge/License-MIT-teal.svg"
       alt="License-MIT"
   /></a>
-  <a href="https://github.com/veeso-dev/rust-template/stargazers"
+  <a href="https://github.com/veeso-dev/tokyo-draft/stargazers"
     ><img
-      src="https://img.shields.io/github/stars/veeso-dev/rust-template.svg"
+      src="https://img.shields.io/github/stars/veeso-dev/tokyo-draft.svg"
       alt="Repo stars"
   /></a>
-  <a href="https://crates.io/crates/rust-template"
+  <a href="https://crates.io/crates/tokyo-draft"
     ><img
-      src="https://img.shields.io/crates/d/rust-template.svg"
+      src="https://img.shields.io/crates/d/tokyo-draft.svg"
       alt="Downloads counter"
   /></a>
-  <a href="https://crates.io/crates/rust-template"
+  <a href="https://crates.io/crates/tokyo-draft"
     ><img
-      src="https://img.shields.io/crates/v/rust-template.svg"
+      src="https://img.shields.io/crates/v/tokyo-draft.svg"
       alt="Latest version"
   /></a>
   <a href="https://ko-fi.com/veeso">
@@ -37,21 +37,24 @@
   /></a>
 </p>
 <p align="center">
-  <a href="https://github.com/veeso-dev/rust-template/actions"
+  <a href="https://github.com/veeso-dev/tokyo-draft/actions"
     ><img
-      src="https://github.com/veeso-dev/rust-template/workflows/build-test/badge.svg"
+      src="https://github.com/veeso-dev/tokyo-draft/workflows/build-test/badge.svg"
       alt="Linux CI"
   /></a>
 </p>
 
 ---
 
-- [Rust-template](#rust-template)
-  - [About rust-template](#about-rust-template)
+- [tokyo-draft](#tokyo-draft)
+  - [About tokyo-draft](#about-tokyo-draft)
   - [Get started](#get-started)
-    - [Run with docker](#run-with-docker)
-  - [rust-template API](#rust-template-api)
+    - [Run](#run)
+  - [tokyo-draft API](#tokyo-draft-api)
     - [Check](#check)
+    - [Render](#render)
+      - [Errors](#errors)
+  - [Hook API](#hook-api)
   - [Support the developer](#support-the-developer)
   - [Contributing and issues](#contributing-and-issues)
   - [Changelog](#changelog)
@@ -59,27 +62,26 @@
 
 ---
 
-## About rust-template
+## About tokyo-draft
 
-rust-template is a Rust web service which comes integrated with ClamAV. The service provides an API endpoint to scan files with ClamAV.
+tokyo-draft is a Rust web service which renders HTML templates starting from incoming data from API. The API allows you to render any template you've pre-configured in the service configuration.
+The rendered template is then sent via a POST request to a configurable hook.
 
 ---
 
 ## Get started
 
-### Run with docker
+### Run
 
-The entire rust-template web service comes with a docker compose file to easily run the service on your machine.
-Just run:
+First configure the environment file as you wish, then source .env and run tokyo-draft with
 
 ```sh
-docker-compose build
-docker-compose up -d
+./tokyo-draft.sh start /var/run/tokyo-draft.pid
 ```
 
-At this point rust-template will be served on the specified port in the docker-compose file. (Default: `3010`)
+At this point tokyo-draft will be served on the specified port in the `.env` (or `.env.override`) file. (Default: `3011`)
 
-## rust-template API
+## tokyo-draft API
 
 ### Check
 
@@ -97,11 +99,55 @@ Response:
 }
 ```
 
+### Render
+
+Render a template with provided data:
+
+```txt
+POST /render
+```
+
+payload:
+
+```json
+{
+  "template": "my-template",
+  "data": {
+    "key1": "value",
+    "key2": 123,
+  },
+  "hookMetadata": {
+    /* custom data to be passed to hook */
+  }
+}
+```
+
+Response (HTML):
+
+(rendered template)
+
+#### Errors
+
+- In case of missing keys or unknown template returns 400.
+
+## Hook API
+
+It is possible to configure in the environment the key `RENDER_HOOK` to an URL which will receive the rendered template as parameter as follows:
+
+```json
+{
+  "body": "RENDERED TEMPLATE HTML SYNTAX BASE64 ENCODED",
+  "metadata": {
+    /* data passed as hookMetadata to /render */
+  }
+}
+```
+
 ---
 
 ## Support the developer
 
-If you like rust-template and you're grateful for the work I've done, please consider a little donation 🥳
+If you like tokyo-draft and you're grateful for the work I've done, please consider a little donation 🥳
 
 You can make a donation with one of these platforms:
 
@@ -121,12 +167,12 @@ Please follow [our contributing guidelines](CONTRIBUTING.md)
 
 ## Changelog
 
-View rust-template's changelog [HERE](CHANGELOG.md)
+View tokyo-draft's changelog [HERE](CHANGELOG.md)
 
 ---
 
 ## License
 
-rust-template is licensed under the MIT license.
+tokyo-draft is licensed under the MIT license.
 
 You can read the entire license [HERE](LICENSE)

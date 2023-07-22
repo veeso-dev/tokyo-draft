@@ -3,6 +3,9 @@ env_files = [
   { path = "./.env.test", profile = "development" },
 ]
 
+[env.production]
+PROD = true
+
 [tasks.run]
 description = "Run app"
 dependencies = []

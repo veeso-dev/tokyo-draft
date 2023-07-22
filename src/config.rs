@@ -4,7 +4,14 @@
 
 /// App configuration read from environment
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Config {}
+pub struct Config {
+    /// configurable url to send rendered template according to tokyo-draft hook API
+    pub render_hook: Option<String>,
+    /// directory containing templates to render
+    pub templates_dir: String,
+    /// port the web server listens to
+    pub web_port: u16,
+}
 
 impl Config {
     pub fn try_from_env() -> anyhow::Result<Self> {
