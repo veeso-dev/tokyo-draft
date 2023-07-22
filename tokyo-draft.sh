@@ -22,7 +22,7 @@ start() {
     ENV=".env.override"
   fi
   source $ENV
-  cargo run --production -- --pidfile $PIDFILE
+  screen -S mail-service -d -m cargo run --production -- --pidfile $PIDFILE
 
   return $?
 }
