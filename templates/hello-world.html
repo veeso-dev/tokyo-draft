@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% block head %}
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      min-width: 100vw;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    p {
+      font-weight: 300;
+    }
+
+    input {
+      font-family: sans-serif;
+      font-size: 1em;
+    }
+
+    textarea {
+      font-family: sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #31363b;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    button,
+    input {
+      margin: 0;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+  </style>
+  <title>{% block title %}{% endblock title %} - Hello, World</title>
+  {% endblock head %}
+</head>
+
+<body>
+  {# A comment #}
+  <h1>Hello, {{ first_name }}! Welcome to Tokyo-Draft.</h1>
+</body>
+
+</html>
