@@ -20,16 +20,6 @@
       src="https://img.shields.io/github/stars/veeso-dev/tokyo-draft.svg"
       alt="Repo stars"
   /></a>
-  <a href="https://crates.io/crates/tokyo-draft"
-    ><img
-      src="https://img.shields.io/crates/d/tokyo-draft.svg"
-      alt="Downloads counter"
-  /></a>
-  <a href="https://crates.io/crates/tokyo-draft"
-    ><img
-      src="https://img.shields.io/crates/v/tokyo-draft.svg"
-      alt="Latest version"
-  /></a>
   <a href="https://ko-fi.com/veeso">
     <img
       src="https://img.shields.io/badge/donate-ko--fi-red"
