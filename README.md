@@ -1,6 +1,6 @@
 # tokyo-draft
 
-<p align="center">~  ~</p>
+<p align="center">~ A webservice to render HTML templates from API data ~</p>
 <p align="center">
   <a href="#get-started-">Get started</a>
   ·
