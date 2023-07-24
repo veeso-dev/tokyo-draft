@@ -1,6 +1,7 @@
 use std::net::TcpListener;
 
 use actix_web::dev::Server;
+use actix_web::middleware::Logger;
 use actix_web::web::Data;
 use actix_web::{App as ActixApp, HttpServer};
 
@@ -44,6 +45,7 @@ impl WebServer {
                     .service(health_check::check_action)
                     .service(render::render_action)
                     .app_data(web_data)
+                    .wrap(Logger::default())
             })
             .listen(listener)?
             .run()
