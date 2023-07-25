@@ -25,8 +25,12 @@ async fn main() -> anyhow::Result<()> {
     );
     let config = config::Config::try_from_env()?;
     info!("initializing web service...");
-    let web_service =
-        web::WebServer::init(config.web_port, config.render_hook, &config.templates_dir).await?;
+    let web_service = web::WebServer::init(
+        &config.listener_address,
+        config.render_hook,
+        &config.templates_dir,
+    )
+    .await?;
     if let Some(pidfile) = args.pidfile.as_deref() {
         debug!("writing pidfile...");
         write_pidfile(pidfile)?;

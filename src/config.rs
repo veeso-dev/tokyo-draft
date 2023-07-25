@@ -9,8 +9,8 @@ pub struct Config {
     pub render_hook: Option<String>,
     /// directory containing templates to render
     pub templates_dir: String,
-    /// port the web server listens to
-    pub web_port: u16,
+    /// address the server will listen to
+    pub listener_address: String,
 }
 
 impl Config {

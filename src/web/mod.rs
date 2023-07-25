@@ -23,14 +23,14 @@ pub struct WebserverData {
 impl WebServer {
     /// Initialize web server
     pub async fn init(
-        web_port: u16,
+        listener_address: &str,
         render_hook: Option<String>,
         templates_dir: &str,
     ) -> anyhow::Result<Self> {
         info!("webserver initialized");
-        info!("web port: {web_port}");
+        info!("web listener address: {listener_address}");
 
-        let listener = TcpListener::bind(format!("0.0.0.0:{web_port}"))?;
+        let listener = TcpListener::bind(listener_address)?;
         let render_service = RenderService::try_from(templates_dir)?;
 
         let server = {

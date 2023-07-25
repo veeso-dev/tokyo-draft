@@ -7,7 +7,7 @@
   <a href="https://crates.io/crates/tokyo-draft" target="_blank">Crates.io</a>
 </p>
 <p align="center">Developed by <a href="https://veeso.dev/" target="_blank">@veeso</a></p>
-<p align="center">Current version: 0.1.1 (24/07/2023)</p>
+<p align="center">Current version: 0.1.2 (25/07/2023)</p>
 
 <p align="center">
   <a href="https://opensource.org/license/mit/"
