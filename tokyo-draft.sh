@@ -10,6 +10,10 @@ if [ -z "$PIDFILE" ]; then
   exit 255
 fi
 
+if [ -z "$HOME" ]; then
+  export HOME=/root
+fi
+
 CARGO=$(which cargo)
 if [ -z "$CARGO" ]; then
   export CARGO_DIR="/$HOME/.cargo"
