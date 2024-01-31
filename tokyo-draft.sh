@@ -28,7 +28,13 @@ start() {
   set -a
   . $ENV
   set +a
-  screen -S tokyo-drafter -d -m cargo run -r -- --pidfile $PIDFILE
+
+  CMD="$(which tokyo-draft)"
+  if [ -z "$CMD" ]; then
+    CMD="$CARGO run -r -- --pidfile $PIDFILE"
+  fi
+
+  screen -S tokyo-draft -d -m $CMD
 
   return $?
 }
